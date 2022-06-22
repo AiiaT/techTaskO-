@@ -1,3 +1,13 @@
 .footer {
 	margin-top: auto;
+	background-color: #333;
+	padding: 30px 0;
+}
+
+.footer__inner {
+	display: flex;
+	justify-content: space-evenly;
+	width: 100%;
+	font-weight: 500;
+	color: #fff;
 }

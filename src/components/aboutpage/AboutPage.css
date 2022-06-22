@@ -1,0 +1,15 @@
+.aboutpage__title {
+	margin-bottom: 30px;
+	text-align: center;
+}
+.aboutpage__content {
+	margin-top: 200px;
+}
+.aboutpage__text {
+	font-size: 18px;
+	width: 600px;
+	margin: 0 auto;
+}
+.aboutpage__text + .aboutpage__text {
+	margin-top: 15px;
+}

@@ -4,9 +4,17 @@ import './Footer.css';
 const Footer = () => {
 	return (
 		<div className='footer'>
-			<div className='footer__inner'>
-				<a href='https://github.com/AiiaT/techTaskO-'>Link to GitHub</a>
-				<div className='footer__copyright'></div>
+			<div className='container'>
+				<div className='footer__inner'>
+					<a href='https://github.com/AiiaT/techTaskO-'>Link to GitHub</a>
+
+					<a className='footer__phone' href='tel:+996553304050'>
+						+996 553 30-40-50
+					</a>
+					<a className='footer__email' href='email:ainzileva@gmail.com'>
+						ainzileva@gmail
+					</a>
+				</div>
 			</div>
 		</div>
 	);
