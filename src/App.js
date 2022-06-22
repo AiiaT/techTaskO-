@@ -9,18 +9,16 @@ import './App.css';
 
 const App = () => {
 	return (
-		<div className='container'>
-			<div className='router__inner'>
-				<Router>
-					<Header />
-					<Routes>
-						<Route path='/' element={<Main />} />
-						<Route path='about' element={<About />} />
-						<Route path='gallery' element={<Gallery />} />
-					</Routes>
-					<Footer />
-				</Router>
-			</div>
+		<div className='router__inner'>
+			<Router>
+				<Header />
+				<Routes>
+					<Route path='/' element={<Main />} />
+					<Route path='about' element={<About />} />
+					<Route path='gallery' element={<Gallery />} />
+				</Routes>
+				<Footer />
+			</Router>
 		</div>
 	);
 };
