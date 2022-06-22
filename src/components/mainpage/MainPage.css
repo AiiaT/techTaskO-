@@ -1,0 +1,17 @@
+.mainpage {
+	padding: 50px 0;
+}
+
+.mainpage__posts-title {
+	text-align: center;
+	margin-bottom: 40px;
+}
+
+.mainpage__post {
+	margin-bottom: 50px;
+}
+
+.mainpage__post-title {
+	font-size: 24px;
+	margin-bottom: 5px;
+}

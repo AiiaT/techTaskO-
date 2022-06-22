@@ -2,7 +2,11 @@ import React from 'react';
 import './GalleryPage.css';
 
 const GalleryPage = () => {
-	return <div>GalleryPage</div>;
+	return (
+		<div className='container'>
+			<div>GalleryPage</div>
+		</div>
+	);
 };
 
 export default GalleryPage;
