@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import Modal from '../modal/Modal';
 
 import './MainPage.css';
 
@@ -6,33 +8,54 @@ const api = 'https://jsonplaceholder.typicode.com/posts';
 const MainPage = () => {
 	const [posts, setPosts] = useState([]);
 	const [searchTerm, setSearchTerm] = useState('');
-	const [isOpen, setIsOpen] = useState(false);
+	const [modalActive, setModalActive] = useState(false);
 	const [selectTerm, setSelectTerm] = useState('Filter out');
-
-	const [input, setInput] = useState('');
-	const [textarea, setTextarea] = useState('');
+	const [postAdd, setPostAdd] = useState({
+		title: '',
+		body: '',
+	});
 
 	const getPosts = async () => {
 		const response = await fetch(api);
 		const posts = await response.json();
 		setPosts(posts);
-		// console.log(posts);
 	};
 
 	useEffect(() => {
 		getPosts();
 	}, []);
 
-	const handleSubmit = e => {
-		e.preventDefault();
-		const newPost = {
-			id: new Date().toLocaleDateString(),
-			userId: Math.floor(Math.random() * 5),
-			title: input,
-			body: textarea,
-		};
-		setPosts([...posts, { newPost }]);
-		setPosts('');
+	const handleChangeTitle = e =>
+		setPostAdd({
+			...postAdd,
+			title: e.target.value,
+		});
+
+	const handleChangeBody = e =>
+		setPostAdd({
+			...postAdd,
+			body: e.target.value,
+		});
+
+	const postRequest = () => {
+		setModalActive(false);
+		axios
+			.post('https://jsonplaceholder.typicode.com/posts', postAdd)
+			.then(response => {
+				console.log(response);
+				if (response.status === 201) {
+					setPostAdd({
+						title: '',
+						body: '',
+					});
+					setModalActive(false);
+				}
+			})
+			.catch(error => {
+				if (error.response.status === 400) {
+					setModalActive(true);
+				}
+			});
 	};
 
 	return (
@@ -59,7 +82,7 @@ const MainPage = () => {
 							<option value='byname'>Filter by name</option>
 							<option value='bycontent'>Filter by content</option>
 						</select>
-						<button className='modal-btn' onClick={() => setIsOpen(!isOpen)}>
+						<button className='modal-btn' onClick={() => setModalActive(true)}>
 							Add Post
 						</button>
 					</div>
@@ -86,32 +109,35 @@ const MainPage = () => {
 								</div>
 							);
 						})}
-					{isOpen && (
+					<Modal
+						active={modalActive}
+						setActive={setModalActive}
+						postRequest={postRequest}>
 						<div className='popup'>
-							<form className='popup__form' onSubmit={handleSubmit}>
+							<div className='popup__form'>
 								<input
 									className='popup__input'
 									type='text'
-									value={input}
-									onChange={e => setInput(e.target.value)}
+									value={postAdd.title}
+									onChange={handleChangeTitle}
 								/>
 								<textarea
 									className='popup__textarea'
 									cols='50'
 									rows='5'
-									value={textarea}
-									onChange={e => setTextarea(e.target.value)}></textarea>
-								<button className='popup__btn-submit' type='submit'>
-									Submit
+									value={postAdd.body}
+									onChange={handleChangeBody}></textarea>
+								<button className='add__btn' onClick={postRequest}>
+									Add Post
 								</button>
-							</form>
+							</div>
 							<button
 								className='close-modal'
-								onClick={() => setIsOpen(!isOpen)}>
+								onClick={() => setModalActive(false)}>
 								X
 							</button>
 						</div>
-					)}
+					</Modal>
 				</div>
 			</div>
 		</div>

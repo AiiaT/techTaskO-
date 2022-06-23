@@ -11,7 +11,7 @@ const Footer = () => {
 					<a className='footer__phone' href='tel:+996553304050'>
 						+996 553 30-40-50
 					</a>
-					<a className='footer__email' href='email:ainzileva@gmail.com'>
+					<a className='footer__email' href='mailto:ainzileva@gmail.com'>
 						ainzileva@gmail
 					</a>
 				</div>
