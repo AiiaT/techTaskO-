@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './GalleryPage.css';
 
-const url = 'https://jsonplaceholder.typicode.com/albums/1/photos';
+const url = 'https://jsonplaceholder.typicode.com/albums/1/photos?_limit=10';
 
 const GalleryPage = () => {
 	const [images, setImages] = useState([]);
